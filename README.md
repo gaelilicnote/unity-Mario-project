@@ -1,2 +1,2 @@
 # unity-Mario-project
-game project
+3D Mario game project
