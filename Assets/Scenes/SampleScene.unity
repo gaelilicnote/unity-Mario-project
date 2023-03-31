@@ -10352,7 +10352,7 @@ GameObject:
   - component: {fileID: 320023877}
   - component: {fileID: 320023876}
   - component: {fileID: 320023881}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Test Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21751,6 +21751,7 @@ MonoBehaviour:
   - {fileID: 61674051}
   - {fileID: 909075617}
   hasGrenades: 0
+  grenadeObj: {fileID: 1712278906815317598, guid: 909f96e8640489b47805ff43831eb2bd, type: 3}
   followCamera: {fileID: 963194227}
   Ammo: 0
   Coin: 0
