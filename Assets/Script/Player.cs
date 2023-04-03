@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public int Ammo;
     public int Coin;
     public int Health;
+    public int score;
 
     public int maxAmmo;
     public int maxCoin;
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour
     MeshRenderer[] meshs;
 
     GameObject nearObject;
-    Weapon equipWeapon;
+    public Weapon equipWeapon;
     int equipWeaponIndex = -1;
     float fireDelay;
 
@@ -65,6 +66,9 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
         meshs = GetComponentsInChildren<MeshRenderer>();
+
+        Debug.Log(PlayerPrefs.GetInt("MaxScore"));
+        // PlayerPrefs.SetInt("MaxScore", 999999); // 유니티에서 제공하는 간단한 저장 기능 (점수기록 등)
     }
 
     void Update()
