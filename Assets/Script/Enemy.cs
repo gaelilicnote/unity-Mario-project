@@ -8,9 +8,12 @@ public class Enemy : MonoBehaviour
     public Type enemyType;
     public int maxHealth;
     public int curHealth;
+    public int score;
+    public GameManager manager;
     public Transform target;
     public BoxCollider meleeArea;
     public GameObject bullet;
+    public GameObject[] Coins;
     public bool isChase;
     public bool isAttack;
     public bool isDead;
@@ -182,10 +185,10 @@ public class Enemy : MonoBehaviour
         foreach(MeshRenderer mesh in meshs)
             mesh.material.color = Color.red;
 
-        yield return new WaitForSeconds(0.1f);
-
         if (curHealth > 0)
         {
+            yield return new WaitForSeconds(0.1f);
+
             foreach (MeshRenderer mesh in meshs)
                 mesh.material.color = Color.white;
         }
@@ -200,6 +203,27 @@ public class Enemy : MonoBehaviour
             isChase = false;
             nav.enabled = false;
             anim.SetTrigger("doDie");
+            // 적이 죽으면 아이템 드랍 구현
+            Player player = target.GetComponent<Player>();
+            player.score += score;
+            int ranCoin = Random.Range(0, 3);
+            Instantiate(Coins[ranCoin], transform.position, Quaternion.identity);
+
+            switch(enemyType)
+            {
+                case Type.A:
+                    manager.enemyCntA--;
+                    break;
+                case Type.B:
+                    manager.enemyCntB--;
+                    break;
+                case Type.C:
+                    manager.enemyCntC--;
+                    break;
+                case Type.D:
+                    manager.enemyCntD--;
+                    break;
+            }
 
             if (isGrenade)
             {
@@ -216,10 +240,7 @@ public class Enemy : MonoBehaviour
                 reactVec += Vector3.up;
                 rigid.AddForce(reactVec * 10, ForceMode.Impulse);
             }
-            if(enemyType != Type.D)
-            {
-                Destroy(gameObject, 3.5f);
-            }
+            Destroy(gameObject, 3.5f);
         }
     }
 }

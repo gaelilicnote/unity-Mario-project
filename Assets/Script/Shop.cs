@@ -39,7 +39,7 @@ public class Shop : MonoBehaviour
             return;
         }
         enterPlayer.Coin -= price;
-        Vector3 ranVec = Vector3.right * Random.Range(-3, 3) + Vector3.forward * Random.Range(-3, 3);
+        Vector3 ranVec = Vector3.right * Random.Range(-2, 2) + Vector3.forward * Random.Range(-2, 2);
         Instantiate(itemObj[index], itemPos[index].position + ranVec, itemPos[index].rotation);
     }
 
